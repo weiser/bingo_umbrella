@@ -51,6 +51,10 @@ mix phx.server # go to http://localhost:4000/
 
 Here, I'd imagine that we'd have CICD to build a prod docker image, push it to dockerhub, and then update the deploys.
 
+### TODO: Links to logs, metrics dashboards, runbooks
+
+Charity Majors, in Observability Engineering, said that in an observable system the most curious developer, not the developer that made the system, is the best debugger.  Logs, metrics, and runbooks help a curious (and oncall) dev thrive.  But its not done here because this is a take home.
+
 ## Architectural choices
 
 (There should be an ADR directory so that a history of design choices can be maintained, but for a take home, it seemed unnecessary)
