@@ -1,0 +1,25 @@
+<!-- modified from https://codepen.io/bhmann/pen/QvGRdG -->
+<main>
+  <h1>
+    Food Truck<br />
+    <span>B</span>
+    <span>I</span>
+    <span>N</span>
+    <span>G</span>
+    <span>O</span>
+  </h1>
+  <!-- Warning: the following code sucks, but it works, damn it! -->
+  <div class="grid">
+    <%= for food_truck <- @food_trucks do %>
+      <label>
+        <div class="mark">
+          <span>
+            <b><%= food_truck.applicant %></b>
+            <br />at<br />
+            <%= food_truck.location_description %>
+          </span>
+        </div>
+      </label>
+    <% end %>
+  </div>
+</main>
