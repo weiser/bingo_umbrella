@@ -35,6 +35,11 @@ defmodule Bingo.FoodTruck do
     field(:neighborhoods_old, :integer)
   end
 
+  @doc """
+  Inserts food truck records into the food_trucks table, from a CSV that is in location `path_to_csv`.
+  Records that do not have a locationDescription in the CSV are skipped because you cannot go to a food truck that has no listed location
+  """
+  @spec load_from_csv(String.t()) :: none()
   def load_from_csv(path_to_csv) do
     changesets =
       Enum.map(from_csv(path_to_csv), fn food_truck ->
@@ -55,6 +60,8 @@ defmodule Bingo.FoodTruck do
       raise "#{path_to_csv} does not have required columns.  Expected '#{known_csv_header()}', got '#{header}'"
     end
 
+    # here, we create FoodTruck structs using maps of column, value pairs,
+    # but filter out food trucks that have no location description because we cannot go to a food truck that has no location listed
     Enum.filter(
       Enum.map(
         rows,
@@ -63,7 +70,6 @@ defmodule Bingo.FoodTruck do
             List.zip([header, row])
             |> Map.new(fn {k, v} -> {known_csv_header_to_fields()[k], v} end)
 
-          # params
           struct(Bingo.FoodTruck, params)
         end
       ),

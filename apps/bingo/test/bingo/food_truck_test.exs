@@ -14,7 +14,10 @@ defmodule Bingo.FoodTruckTest do
 
       assert %Bingo.FoodTruck{location_id: 1_569_152} =
                Bingo.Repo.one!(from ft in Bingo.FoodTruck, where: ft.location_id == 1_569_152)
-      food_trucks_no_location_desc = from ft in Bingo.FoodTruck, where: ft.location_description == ""
+
+      food_trucks_no_location_desc =
+        from ft in Bingo.FoodTruck, where: ft.location_description == ""
+
       assert 0 = Bingo.Repo.aggregate(food_trucks_no_location_desc, :count)
     end
 

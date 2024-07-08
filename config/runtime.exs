@@ -8,6 +8,7 @@ import Config
 # The block below contains prod specific runtime configuration.
 if config_env() == :prod do
   database_path = System.fetch_env!("DB_PATH")
+
   config :bingo, Bingo.Repo,
     database: database_path,
     pool_size: String.to_integer(System.get_env("POOL_SIZE") || "5")
@@ -34,7 +35,7 @@ if config_env() == :prod do
       port: String.to_integer(System.get_env("PORT") || "4000")
     ],
     secret_key_base: secret_key_base,
-     server: true
+    server: true
 
   # ## Using releases
   #

@@ -12,6 +12,7 @@ defmodule BingoWeb.PageControllerTest do
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")
+
     html_response(conn, 200)
     # there should be 25 squares
     |> assert_html("label", min: 25)

@@ -16,7 +16,6 @@ defmodule Bingo.Application do
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one, name: Bingo.Supervisor)
-
   end
 
   defp skip_migrations?() do
